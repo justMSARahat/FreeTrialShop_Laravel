@@ -5,17 +5,17 @@ namespace App\Models\Backend;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class brand extends Model
+class product extends Model
 {
     use HasFactory;
 
-    public function product()
+    public function brand()
     {
-    	return $this->hasMany(product::class);
+    	return $this->belongsTo(brand::class);
     }
-    
+
     public function category()
     {
-    	return $this->hasMany(category::class);
+    	return $this->belongsTo(category::class);
     }
 }

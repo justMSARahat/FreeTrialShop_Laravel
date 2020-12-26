@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use File;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -15,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.category.manage');
+        $category = category::orderBy('name','asc')->where('is_parent',0)->get();
+        return view('backend.pages.category.manage', compact('category') );
     }
 
     /**
@@ -36,7 +40,33 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max: 255',
+        ],
+        [
+            'name.required' => 'Please Insert Category Name',
+        ]);
+
+        $cat = new category();
+        $cat->name         = $request->name;        
+        $cat->slug         = Str::slug($request->name);        
+        $cat->is_parent    = $request->is_parent;   
+        $cat->status       = $request->status;      
+        $cat->description  = $request->description; 
+
+        //image Preparation
+        if ($request->image) {
+            $image      = $request->file('image');
+            $img        = rand().'_'.'Category-Logo'.'.'.$image->getClientOriginalExtension();
+            $location   = public_path('Backend/image/category/' .$img );
+            Image::make($image)->save($location);
+            $cat->image = $img;
+        }
+
+        $cat->save();
+        return redirect()->route('category.manage');
+
+
     }
 
     /**
@@ -58,7 +88,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.pages.category.edit');
+        $category = category::find($id);
+        if (!is_null($category)) {
+            return view('backend.pages.category.edit',compact('category'));
+        }
+        else{
+            return view('backend.pages.category.edit');
+        }
     }
 
     /**

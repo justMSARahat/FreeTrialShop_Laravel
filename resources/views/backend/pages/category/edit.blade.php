@@ -6,10 +6,10 @@
             <div class="widget widget-one">
                 <!-- Page Content Header -->
                 <div class="widget-heading">
-                    <h6 class="">Create New Category</h6>
+                    <h6 class="">Edit Category</h6>
                 </div>
                 <!-- Page Main Content -->
-                <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('category.update', $category->id ) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group mb-4">
                         <label for="">Category Name</label>
@@ -19,18 +19,17 @@
                         <div class="form-group col-md-4">
                             <label for="inputEmail4">Parent Category</label>
                             <select id="inputState" class="form-control" name="is_parent">
-                                <option selected>Choose...</option>
-                                <option value="0" >Parent</option>
+                                <option value="0" @if( $category->is_parent == 0  ) selected @endif>Parent</option>
                                 @foreach( App\Models\Backend\category::orderBy('name','asc')->where('is_parent',0)->get() as $perentcat )
-                                    <option value="{{ $perentcat->id }}" >{{ $perentcat->name }}</option>
+                                    <option value="{{ $perentcat->id }}" @if( $category->is_parent == $perentcat->id  ) selected @endif>{{ $perentcat->name }}</option>
 
                                     <!-- 1st Child -->
                                     @foreach( App\Models\Backend\category::orderBy('name','asc')->where('is_parent',$perentcat->id)->get() as $childcat )
-                                        <option value="{{ $childcat->id }}" >-{{ $childcat->name }}</option>
+                                        <option value="{{ $childcat->id }}" @if( $category->is_parent == $childcat->id ) selected @endif>-{{ $childcat->name }}</option>
                                     
                                         <!-- 2nd Child -->
                                         @foreach( App\Models\Backend\category::orderBy('name','asc')->where('is_parent',$childcat->id)->get() as $child2cat )
-                                            <option value="{{ $child2cat->id }}" >--{{ $child2cat->name }}</option>
+                                            <option value="{{ $child2cat->id }}" @if( $category->is_parent == $child2cat->id ) selected @endif>--{{ $child2cat->name }}</option>
                                         @endforeach
 
                                     @endforeach
@@ -41,9 +40,9 @@
                             <label for="inputState">Status</label>
                             <select id="inputState" class="form-control" name="status">
                                 <option selected>Choose...</option>
-                                <option value="1" >Active</option>
-                                <option value="2" >Inactive</option>
-                                <option value="0" >Pending</option>
+                                <option value="1" @if( $category->status == 1 ) selected @endif>Active</option>
+                                <option value="2" @if( $category->status == 2 ) selected @endif>Inactive</option>
+                                <option value="0" @if( $category->status == 0 ) selected @endif>Pending</option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -60,7 +59,7 @@
                         <label for="inputAddress2">Description</label>
                         <textarea name="description" class="form-control" id="editor-container" cols="30" rows="5" placeholder="Short Description">{{ $category->description }}</textarea>
                     </div>
-                  <button type="submit" class="btn btn-primary mt-3 btn-block">Create Category</button>
+                  <button type="submit" class="btn btn-primary mt-3 btn-block">Update Category</button>
                 </form>
 
             </div>

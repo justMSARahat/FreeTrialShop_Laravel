@@ -21,7 +21,7 @@
         <ul class="list-unstyled menu-categories" id="accordionExample">
             
             <!-- ******DASHBOARD SIDEBAR****** -->
-            <li class="menu ">
+            <li class="menu @if( Route::currentRouteNamed('dashboard') ) active @endif">
                 <a href="{{route('dashboard')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
@@ -41,7 +41,7 @@
             <!-- ****************************** -->
 
             <!-- ******Brand SIDEBAR****** -->
-            <li class="menu">
+            <li class="menu @if( Route::currentRouteNamed('brand.manage') || Route::currentRouteNamed('brand.create') || Route::currentRouteNamed('brand.edit')  ) active @endif">
                 <a href="#brand" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
@@ -52,21 +52,18 @@
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled" id="brand" data-parent="#accordionExample">
-                    <li>
+                    <li class="@if( Route::currentRouteNamed('brand.manage') ) active @endif">
                         <a href="{{ route('brand.manage') }}">Brand Manage</a>
                     </li>
-                    <li>
+                    <li class="@if( Route::currentRouteNamed('brand.create') ) active @endif">
                         <a href="{{ route('brand.create') }}">Brand Create</a>
-                    </li>
-                    <li>
-                        <a href="">Trash</a>
                     </li>
                 </ul>
             </li>
             <!-- ******Brand SIDEBAR****** -->
 
             <!-- ******Brand SIDEBAR****** -->
-            <li class="menu">
+            <li class="menu @if( Route::currentRouteNamed('category.manage') || Route::currentRouteNamed('category.create') || Route::currentRouteNamed('category.edit') ) active @endif">
                 <a href="#category" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
@@ -77,14 +74,11 @@
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled" id="category" data-parent="#accordionExample">
-                    <li>
+                    <li class="@if( Route::currentRouteNamed('category.manage') ) active @endif">
                         <a href="{{ route('category.manage') }}">Category Manage</a>
                     </li>
-                    <li>
+                    <li class="@if( Route::currentRouteNamed('category.create') ) active @endif">
                         <a href="{{ route('category.create') }}">Category Create</a>
-                    </li>
-                    <li>
-                        <a href="">Trash</a>
                     </li>
                 </ul>
             </li>

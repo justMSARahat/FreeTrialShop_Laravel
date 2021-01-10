@@ -106,8 +106,39 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $request->validate([
+            'name' => 'required|max: 255',
+        ],
+        [
+            'name.required' => 'Please Insert Category Name',
+        ]);
+
+        $cat = category::find($id);
+        $cat->name         = $request->name;        
+        $cat->slug         = Str::slug($request->name);        
+        $cat->is_parent    = $request->is_parent;   
+        $cat->status       = $request->status;      
+        $cat->description  = $request->description; 
+
+        //image Preparation
+        if ($request->image) {
+
+            if ( file::exists('Backend/image/category/' . $cat->image) ) {
+                file::delete('Backend/image/category/' . $cat->image);
+            }
+
+            $image      = $request->file('image');
+            $img        = rand().'_'.'Category-Logo'.'.'.$image->getClientOriginalExtension();
+            $location   = public_path('Backend/image/category/' .$img );
+            Image::make($image)->save($location);
+            $cat->image = $img;
+        }
+
+        $cat->save();
+        return redirect()->route('category.manage');
     }
+
+   
 
     /**
      * Remove the specified resource from storage.
@@ -117,6 +148,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = category::find($id);
+        if (!is_null($category)) {
+            if ( file::exists('Backend/image/category/' . $category->image) ) {
+                file::delete('Backend/image/category/' . $category->image);
+            }
+            $category->delete();
+            return redirect()->route('category.manage');
+        }
+        else{
+            return redirect()->route('category.manage');
+        }
     }
 }

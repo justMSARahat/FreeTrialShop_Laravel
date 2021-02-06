@@ -45,18 +45,14 @@ Route::group(['prefix'=>'admin'], function(){
 		route::get('/delete/{id}','App\Http\Controllers\Backend\CategoryController@destroy')->name('category.delete');
 	});
 
-	//Shop Based Route
-	Route::group(['prefix'=>'shop'], function(){
-		//Product Route
-		route::group(['prefix'=>'Product'], function(){
-			route::get('/manage','App\Http\Controllers\Backend\ProductController@index')->name('product.manage');
-			route::get('/create','App\Http\Controllers\Backend\ProductController@create')->name('product.create');
-			route::post('/store','App\Http\Controllers\Backend\ProductController@store')->name('product.store');
-			route::get('/edit/{id}','App\Http\Controllers\Backend\ProductController@edit')->name('product.edit');
-			route::post('/update/{id}','App\Http\Controllers\Backend\ProductController@update')->name('product.update');
-			route::get('/delete/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('product.delete');
-		});
-	});
+    route::group(['prefix'=>'product'], function(){
+        route::get('/manage','App\Http\Controllers\Backend\ProductController@index')->name('product.manage');
+        route::get('/create','App\Http\Controllers\Backend\ProductController@create')->name('product.create');
+        route::post('/store','App\Http\Controllers\Backend\ProductController@store')->name('product.store');
+        route::get('/edit/{id}','App\Http\Controllers\Backend\ProductController@edit')->name('product.edit');
+        route::post('/update/{id}','App\Http\Controllers\Backend\ProductController@update')->name('product.update');
+        route::post('/delete/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('product.delete');
+    });
 
 
 });

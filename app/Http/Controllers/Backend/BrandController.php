@@ -65,7 +65,12 @@ class BrandController extends Controller
 
         $brand->save();
 
-        return redirect()->route('brand.manage');
+        $nofty = array(
+            'message' => 'Brand Created',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('brand.manage')->with($nofty);
 
     }
 
@@ -105,7 +110,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-            
+
             $request->validate([
                 'name'  => 'required|max: 255',
             ],
@@ -121,7 +126,7 @@ class BrandController extends Controller
             $brand->status       = $request->status;
 
             if ( !is_null($request->image) ) {
-            
+
             if ( file::exists('Backend/image/brand/'.$brand->image) ) {
                 file::delete('Backend/image/brand/'.$brand->image);
             }
@@ -135,7 +140,13 @@ class BrandController extends Controller
         }
 
             $brand->save();
-            return redirect()->route('brand.manage');
+
+            $nofty = array(
+                'message' => 'Brand Updated',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->route('brand.manage')->with($nofty);
     }
 
     /**
@@ -154,9 +165,17 @@ class BrandController extends Controller
                 }
             }
             $brand->delete();
-            return redirect()->route('brand.manage');
+            $nofty = array(
+                'message' => 'Brand Deleted',
+                'alert-type' => 'warning'
+            );
+            return redirect()->route('brand.manage')->with($nofty);
         }else{
-            return redirect()->route('brand.manage');
+            $nofty = array(
+                'message' => 'Brand Deleted',
+                'alert-type' => 'warning'
+            );
+            return redirect()->route('brand.manage')->with($nofty);
         }
     }
 }

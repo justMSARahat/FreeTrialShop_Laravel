@@ -48,11 +48,11 @@ class CategoryController extends Controller
         ]);
 
         $cat = new category();
-        $cat->name         = $request->name;        
-        $cat->slug         = Str::slug($request->name);        
-        $cat->is_parent    = $request->is_parent;   
-        $cat->status       = $request->status;      
-        $cat->description  = $request->description; 
+        $cat->name         = $request->name;
+        $cat->slug         = Str::slug($request->name);
+        $cat->is_parent    = $request->is_parent;
+        $cat->status       = $request->status;
+        $cat->description  = $request->description;
 
         //image Preparation
         if ($request->image) {
@@ -64,7 +64,13 @@ class CategoryController extends Controller
         }
 
         $cat->save();
-        return redirect()->route('category.manage');
+
+        $nofty = array(
+            'message' => 'Category Created',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('category.manage')->with($nofty);
 
 
     }
@@ -114,11 +120,11 @@ class CategoryController extends Controller
         ]);
 
         $cat = category::find($id);
-        $cat->name         = $request->name;        
-        $cat->slug         = Str::slug($request->name);        
-        $cat->is_parent    = $request->is_parent;   
-        $cat->status       = $request->status;      
-        $cat->description  = $request->description; 
+        $cat->name         = $request->name;
+        $cat->slug         = Str::slug($request->name);
+        $cat->is_parent    = $request->is_parent;
+        $cat->status       = $request->status;
+        $cat->description  = $request->description;
 
         //image Preparation
         if ($request->image) {
@@ -135,10 +141,16 @@ class CategoryController extends Controller
         }
 
         $cat->save();
-        return redirect()->route('category.manage');
+
+        $nofty = array(
+            'message' => 'Category Updated',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('category.manage')->with($nofty);
     }
 
-   
+
 
     /**
      * Remove the specified resource from storage.
@@ -154,7 +166,13 @@ class CategoryController extends Controller
                 file::delete('Backend/image/category/' . $category->image);
             }
             $category->delete();
-            return redirect()->route('category.manage');
+
+            $nofty = array(
+                'message' => 'Category Deleted',
+                'alert-type' => 'warning'
+            );
+
+            return redirect()->route('category.manage')->with($nofty);
         }
         else{
             return redirect()->route('category.manage');

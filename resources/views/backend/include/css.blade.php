@@ -12,7 +12,7 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{ asset('Backend/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('Backend/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
-    
+
     <!-- Developer Custom Css -->
     <link href="{{ asset('Backend/style.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -29,3 +29,6 @@
           theme: 'snow'  // or 'bubble'
         });
     </script>
+
+{{--Toastr Css--}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">

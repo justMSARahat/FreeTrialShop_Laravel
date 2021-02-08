@@ -35,7 +35,29 @@
                                         </td>
                                         <td class="text-center">
                                             <a href="{{ route('country.edit', $country->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('country.delete', $country->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-trash"></i></a>
+                                            
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are You Sure to Remove This Country?All District & Divisions Under this Country will be Deleted!!
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <a href="{{ route('country.delete', $country->id) }}" class="btn btn-danger" >Delete</a>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         </td>
                                     </tr>
 

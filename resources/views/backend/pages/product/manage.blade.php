@@ -82,7 +82,7 @@
                         </table>
                     </div>
                 </div>
-
+                <a href="{{ route('product.create') }}" class="btn btn-primary">Add New Product</a>
             </div>
         </div>
     </div>

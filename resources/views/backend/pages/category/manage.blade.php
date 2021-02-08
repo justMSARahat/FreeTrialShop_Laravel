@@ -140,7 +140,7 @@
                         </table>
                     </div>
                 </div>
-
+                <a href="{{ route('category.create') }}" class="btn btn-primary">Create New Category</a>
             </div>
         </div>
     </div>

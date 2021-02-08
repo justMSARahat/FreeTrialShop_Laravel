@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Backend\country;
 use App\Models\Backend\division;
+use App\Models\Backend\district;
 use file;
 use image;
 
@@ -122,6 +123,26 @@ class DivisionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $division = division::find($id);
+        if( !is_null($division) ){
+            
+            $district = district::where('division_id','$division')->get();
+            foreach( $district as $district ){
+                $district->delete();
+            }
+
+            $division->delete();
+
+            $nofty = array(
+                'message' => 'Division Removed',
+                'alert-type' => 'warning'
+            );
+    
+            return redirect()->route('division.manage')->with($nofty);
+
+        }
+        else{
+            return back();
+        }
     }
 }

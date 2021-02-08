@@ -44,7 +44,7 @@
                             </table>
                         </div>
                     </div>
-
+                <a href="{{ route('country.create') }}" class="btn btn-primary">Add Shipping Country</a>
                 </div>
             </div>
         </div>

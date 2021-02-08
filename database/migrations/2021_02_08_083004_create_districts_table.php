@@ -21,8 +21,6 @@ class CreateDistrictsTable extends Migration
             $table->unsignedinteger('division_id');
             $table->timestamps();
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');            
-            
-
         });
     }
 

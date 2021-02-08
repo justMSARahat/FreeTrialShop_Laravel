@@ -23,11 +23,11 @@
                                 </thead>
                                 <tbody>
                                 @php $i=1; @endphp
-                                @foreach( $division as $value )
+                                @foreach( $district as $value )
                                     <tr>
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->country->name }}</td>
+                                        <td>{{ $value->division->name }}</td>
                                         <td>
                                             @if( $value->priority == 0 )
                                                 <span class="badge-warning">Hidden</span>
@@ -36,8 +36,8 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('division.edit', $value->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('division.delete', $value->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('district.edit', $value->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('district.delete', $value->id) }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
@@ -48,7 +48,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Are You Sure to Delete This Division? All District Under This Division will be Deleted!
+                                                            Are You Sure to Delete This District?
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

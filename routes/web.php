@@ -73,12 +73,12 @@ Route::group(['prefix'=>'admin'], function(){
             route::get('/delete/{id}','App\Http\Controllers\Backend\DivisionController@destroy')->name('division.delete');
         });
         route::group(['prefix'=>'district'], function(){
-            route::get('/manage','App\Http\Controllers\Backend\ProductController@index')->name('district.manage');
-            route::get('/create','App\Http\Controllers\Backend\ProductController@create')->name('district.create');
-            route::post('/store','App\Http\Controllers\Backend\ProductController@store')->name('district.store');
-            route::get('/edit/{id}','App\Http\Controllers\Backend\ProductController@edit')->name('district.edit');
-            route::post('/update/{id}','App\Http\Controllers\Backend\ProductController@update')->name('district.update');
-            route::get('/delete/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('district.delete');
+            route::get('/manage','App\Http\Controllers\Backend\DistrictController@index')->name('district.manage');
+            route::get('/create','App\Http\Controllers\Backend\DistrictController@create')->name('district.create');
+            route::post('/store','App\Http\Controllers\Backend\DistrictController@store')->name('district.store');
+            route::get('/edit/{id}','App\Http\Controllers\Backend\DistrictController@edit')->name('district.edit');
+            route::post('/update/{id}','App\Http\Controllers\Backend\DistrictController@update')->name('district.update');
+            route::get('/delete/{id}','App\Http\Controllers\Backend\DistrictController@destroy')->name('district.delete');
         });
     });
 

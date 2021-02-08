@@ -13,4 +13,8 @@ class division extends Model
         return $this->belongsTo(country::class);
     }
 
+    public function district(){
+        return $this->hasMany(district::class);
+    }
+
 }

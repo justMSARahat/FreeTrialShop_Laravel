@@ -54,5 +54,33 @@ Route::group(['prefix'=>'admin'], function(){
         route::post('/delete/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('product.delete');
     });
 
+    route::group(['prefix'=>'shipping-address'],function(){
+
+        route::group(['prefix'=>'country'], function(){
+            route::get('/manage','App\Http\Controllers\Backend\CountryController@index')->name('country.manage');
+            route::get('/create','App\Http\Controllers\Backend\CountryController@create')->name('country.create');
+            route::post('/store','App\Http\Controllers\Backend\CountryController@store')->name('country.store');
+            route::get('/edit/{id}','App\Http\Controllers\Backend\CountryController@edit')->name('country.edit');
+            route::post('/update/{id}','App\Http\Controllers\Backend\CountryController@update')->name('country.update');
+            route::get('/delete/{id}','App\Http\Controllers\Backend\CountryController@destroy')->name('country.delete');
+        });
+        route::group(['prefix'=>'division'], function(){
+            route::get('/manage','App\Http\Controllers\Backend\DivisionController@index')->name('division.manage');
+            route::get('/create','App\Http\Controllers\Backend\DivisionController@create')->name('division.create');
+            route::post('/store','App\Http\Controllers\Backend\DivisionController@store')->name('division.store');
+            route::get('/edit/{id}','App\Http\Controllers\Backend\DivisionController@edit')->name('division.edit');
+            route::post('/update/{id}','App\Http\Controllers\Backend\DivisionController@update')->name('division.update');
+            route::get('/delete/{id}','App\Http\Controllers\Backend\DivisionController@destroy')->name('division.delete');
+        });
+        route::group(['prefix'=>'district'], function(){
+            route::get('/manage','App\Http\Controllers\Backend\ProductController@index')->name('district.manage');
+            route::get('/create','App\Http\Controllers\Backend\ProductController@create')->name('district.create');
+            route::post('/store','App\Http\Controllers\Backend\ProductController@store')->name('district.store');
+            route::get('/edit/{id}','App\Http\Controllers\Backend\ProductController@edit')->name('district.edit');
+            route::post('/update/{id}','App\Http\Controllers\Backend\ProductController@update')->name('district.update');
+            route::get('/delete/{id}','App\Http\Controllers\Backend\ProductController@destroy')->name('district.delete');
+        });
+    });
+
 
 });
